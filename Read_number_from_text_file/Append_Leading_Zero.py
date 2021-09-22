@@ -64,7 +64,7 @@ def format_file(path, actual_length, filename):
 # format_file("files/truncated_corp_account.txt", 10, "corp_account_corrected.txt")
 # format_file("files/truncated_corp_customerId.txt", 9, "corp_customerId_corrected.txt")
 
-format_file("files/GTB_dud_cheque_truncated_ind_customer_id_05_21.txt", 10, "GTB_dud_cheque_corrected_ind_customer_id_05_21.txt")
-format_file("files/GTB_dud_cheque_truncated_corp_customer_id_05_21.txt", 10, "GTB_dud_cheque_corrected_corp_customer_id_05_21.txt")
+format_file("files/GTB_dud_cheque_truncated_ind_customer_id_08_21.txt", 10, "GTB_dud_cheque_corrected_ind_customer_id_08_21.txt")
+format_file("files/GTB_dud_cheque_truncated_corp_customer_id_08_21.txt", 10, "GTB_dud_cheque_corrected_corp_customer_id_08_21.txt")
     
 #print(add_lending_zeros("13456", 10))
