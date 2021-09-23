@@ -3,6 +3,7 @@ from tkinter.constants import *
 import os
 from tkinter import filedialog
 from tkinter import messagebox
+from ConvertToPipedelimited import ExcelFile
 
 class CreateApp:
 
@@ -102,6 +103,21 @@ class CreateApp:
         return sep.join(path_list)
         
 
+    def generate_text_fileclicked(self, path):
 
+        
+        try:
+            if path:
+                excel_file_class_Obj = ExcelFile(path)
+
+            return
+
+        
+        except:
+            messagebox.showerror('Invalid', 'Error reading excel file')
+            
+
+
+    
 create = CreateApp()
 create.app()
