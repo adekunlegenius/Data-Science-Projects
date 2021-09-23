@@ -22,6 +22,7 @@ class CreateApp:
         side_frame.config(width=200, borderwidth=5, border=5, highlightbackground="#FFFFFF" )
         side_frame.grid(row=0, column=0, padx=5, pady=5)
     
+
     def create_display_view(self):
         
         top_frame = tkinter.Frame(self.root)
@@ -80,11 +81,27 @@ class CreateApp:
                 else:
                     print(filename)
                     filenamebase_here = os.path.basename(filename)
+                    
+                    # path_list = filename.split('/')
+                    # path_list.remove(path_list[-1])
+                    # print('/'.join(path_list))
+                    #print(path_list)
+
+                    print(self.get_absolute_parent_path(filename))
+                    
                     self.filenamebase.set(filenamebase_here)
                     self.path_string.set(filename)
             except:
                 messagebox.showerror('Invalid', 'Error loading excel file')
         return callback
+
+    def get_absolute_parent_path(self, path_name, sep='/')->str:
+        
+        path_list = path_name.split(sep)
+        path_list.remove(path_list[-1])
+        return sep.join(path_list)
+        
+
 
 create = CreateApp()
 create.app()
