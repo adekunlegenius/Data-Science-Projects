@@ -1,0 +1,3 @@
+Name|Sex|Age|Fee
+Ade|Male|12|20000
+Shola|Female|18|50000

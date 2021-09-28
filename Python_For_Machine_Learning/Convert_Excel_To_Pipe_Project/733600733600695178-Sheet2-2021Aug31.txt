@@ -1,0 +1,4 @@
+Name|Sex|Age|Fee|School
+Ade|Male|12|20000.0|OAU
+Shola|Female|18|50000.0|Convenant
+Bimbo|Female|18||FCH

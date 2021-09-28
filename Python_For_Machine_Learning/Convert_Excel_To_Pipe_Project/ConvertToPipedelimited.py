@@ -1,18 +1,26 @@
 
-from tkinter.constants import FALSE, TRUE
 import numpy
+
 import pandas as pd 
-from datetime import *
+
+#from datetime import *
+from tkinter.constants import *
 from DateFormated import DateFormated
+
 # import os
+
 class ExcelFile:
 
     def __init__(self, file_path, subID, date):
-        self.file_path =file_path
+        """Initialise the class variables which are: the path of the to be read in form of file_path; 
+        the subscriber ID (subID); the date of the data"""
+        
+        self.file_path =file_path  
         self.subID = subID
         self.date = date
 
     def get_file_extension(self, path:str)->str:
+        """The function takes in path of the file and returns the extension of the file in lower case"""
         extension = path.split('.')[-1]
         return extension.lower()
 
@@ -101,20 +109,21 @@ class ExcelFile:
                         message = 'An error was occurred while writing'+ text_file_name 
                         write_message.append(message)
                 else:
-
+                    print('Writing Execution reach here.... 3')
                     # Test codes
                     #---------------------------------------------------------------------------
-                    # text_file_name = self.subID + '-' + sheet_name + '-' + formatted_date_str
-                    # write_path = self.get_absolute_parent_path(self.file_path) + '/' + text_file_name + '.txt'
-                    # if self.write_to_text(write_path, self.dict_data[sheet_name]):
-                    #     message = text_file_name + ' Successfully generated'
-                    #     write_message.append(message)
-                    # else:
-                    #     message = 'An error was occurred while writing'+ text_file_name 
-                    #     write_message.append(message)
+                    text_file_name = self.subID + '-' + sheet_name + '-' + formatted_date_str
+                    write_path = self.get_absolute_parent_path(self.file_path) + '/' + text_file_name + '.txt'
+                    print('Writing Execution reach here.... 4')
+                    if self.write_to_text(write_path, self.dict_data[sheet_name]):
+                        message = text_file_name + ' Successfully generated'
+                        write_message.append(message)
+                    else:
+                        message = 'An error was occurred while writing'+ text_file_name 
+                        write_message.append(message)
                     #--------------------------------------------------------------------------
-                    message = sheet_name + " could be converted to text because it contains " + str(len(self.get_column_heads(self.dict_data[sheet_name]))) + ' no. of columns. Kindly confirm and try again'
-                    write_message.append(message)
+                    #message = sheet_name + " could be converted to text because it contains " + str(len(self.get_column_heads(self.dict_data[sheet_name]))) + ' no. of columns. Kindly confirm and try again'
+                    #write_message.append(message)
                 print('Writing complete')
             return write_message    
         else:
