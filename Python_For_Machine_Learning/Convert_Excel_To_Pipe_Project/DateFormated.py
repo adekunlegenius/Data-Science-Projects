@@ -1,9 +1,10 @@
 from datetime import *
+from tkinter.constants import FALSE
 
 
 class DateFormated:
 
-    def __init__(self, date_string):
+    def __init__(self, date_string:str):
         self.date_string = date_string
         self.date_Obj = date.fromisoformat(date_string)
 
@@ -70,9 +71,35 @@ class DateFormated:
         else:
             return 31
 
-    def get_date_string_with_last_day(self, sep=''):
+    def get_date_string_with_last_day(self, sep='', year_first:bool=FALSE):
         last_day_date_string= ""
-        last_day_date_string = str(self.get_year_number()) + sep + self.get_month_first_three_char() + sep + str(self.get_month_last_day())
-        return last_day_date_string
+        if year_first:
+            last_day_date_string = str(self.get_year_number()) + sep + self.get_month_first_three_char() + sep + str(self.get_month_last_day())
+            return last_day_date_string
+        else:
+            last_day_date_string = str(self.get_month_last_day()) + sep + self.get_month_first_three_char() + sep + str(self.get_year_number()) 
+            return last_day_date_string
 
-    
+    def get_date_string_with_day(self, sep='', year_first:bool=FALSE):
+        date_string_with_day= ""
+        if year_first:
+            date_string_with_day = str(self.get_year_number()) + sep + str(self.get_month_first_three_char()) + sep + str(self.get_day_number()) 
+            return date_string_with_day
+        else:
+            date_string_with_day = str(self.get_day_number()) + sep + str(self.get_month_first_three_char()) + sep + str(self.get_year_number())
+            return date_string_with_day
+
+    def get_today_date(self)->date:
+        return date.today()
+
+    def get_today_year(self)->int:
+
+        return self.get_today_date().year
+
+    def get_today_month(self):
+        
+        return self.get_today_date().month
+
+    def get_today_day(self):
+
+        return self.get_today_date().day
