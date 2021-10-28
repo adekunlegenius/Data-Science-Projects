@@ -2,6 +2,7 @@ from datetime import *
 from os import terminal_size
 import numpy
 import pandas as pd 
+import tkinter
 import re
 if None:
     print('Helo world')
@@ -71,8 +72,32 @@ print('-------------------------------------------------')
 #     for k, v in diction.items():
 #         print(k, v)
 
-test = [4, 5, 6, 7, 8, 19]
+# test = [4, 5, 6, 7, 8, 19]
 
-print(str(test.index(19)+1).zfill(2))
+# print(str(test.index(19)+1).zfill(2))
 
-print(str(test[5]).zfill(2))
+# print(str(test[5]).zfill(2))
+# class Test:
+#     def run(self):
+#         global display_canvas
+#         self.root = tkinter.Tk()
+#         self.root.minsize(width=850, height=400)
+#         display_canvas = tkinter.Canvas(self.root, height=125, width=700, borderwidth=4, background='white')
+#         display_canvas.grid(row=10, padx=5, pady=20)
+#         display_canvas.create_text(50, 80, text='Status:', tags='labels', fill='red')
+#         display_canvas.create_text(65, 10, text='Status2:', tags='labels', fill='red')
+#         display_canvas.create_text(70, 10, text='No file Choosen', tags=('labels'))
+#         button = tkinter.Button(self.root, text='click', command=self.testcommand())
+#         button.grid(row=20, column=0)
+#         print(display_canvas.gettags('labels'))
+#         self.root.mainloop()
+
+
+#     def testcommand(self):
+#         def callback():
+#             if display_canvas.gettags('labels') != None:
+#                 display_canvas.delete('labels')
+#         return callback
+
+# trytest = Test()
+# trytest.run()

@@ -78,5 +78,5 @@ class TransformToCode:
 
         self.frameObj[2][0] = 'Account Status'
         self.frameObj[3][0] = 'Account status date'
-        self.frameObj[9][0] = 'Loan Classification'
-        self.frameObj[18][0] = 'Currency'
+        self.frameObj[9][0] = 'Currency'
+        self.frameObj[18][0] = 'Loan Classification'

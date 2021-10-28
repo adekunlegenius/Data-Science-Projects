@@ -215,7 +215,9 @@ class CreateApp:
                     self.selected_filename = filename
                     filenamebase_here = os.path.basename(filename)
                     
-                    #self.display_canvas.delete(ALL)
+                    if self.display_canvas.gettags('message') != None:
+                        self.display_canvas.delete('message')
+                   
                     #self.create_display_canvas()
                     #self.display_canvas_status_text
                     #print(self.get_absolute_parent_path(filename))
@@ -287,7 +289,7 @@ class CreateApp:
                         if messages != None:
                             for diction in messages:
                                 for k, message in diction.items():
-                                    self.display_canvas.create_text(10, y, text=message, anchor=W, fill=k)
+                                    self.display_canvas.create_text(10, y, text=message, anchor=W, tags='message', fill=k)
                                     status_color.append(k)
                                     y = y + 18
                             if 'green' in status_color:
