@@ -4,11 +4,12 @@ import os
 from tkinter import Canvas, Frame, filedialog
 from tkinter import messagebox
 from tkinter import ttk
+from turtle import fillcolor
 from ConvertToPipedelimited import ExcelFile
 from DateFormated import DateFormated
-class CreateApp:
 
-    
+
+class CreateApp:  
 
     def app(self):
         self.root = tkinter.Tk()
@@ -41,7 +42,7 @@ class CreateApp:
         center_frame_obj = tkinter.Frame(self.root)
         center_frame_obj.config(width=500)
         center_frame_obj.grid(row=10, column=0, columnspan=2, pady=10, padx=10)
-
+        
         button = tkinter.Button(center_frame_obj, text='Choose File',  border=2, command=self.choose_file_clicked())
         button.grid(row=10,  column=0, pady=2, padx=2)
         
@@ -91,7 +92,7 @@ class CreateApp:
         button_gen.grid(row=30,  column=1, pady=2, padx=2, sticky=N+E)
 
         self.create_display_canvas(center_frame_obj)
-
+        self.create_display_copyright(center_frame_obj)
 
     def create_date_view(self, frame_Obj):
 
@@ -118,7 +119,10 @@ class CreateApp:
 
         
         self.year = tkinter.IntVar()
-        self.year.set(today_year)
+        if today_month == 1:
+            self.year.set(today_year-1)
+        else:
+            self.year.set(today_year)
         self.prev_year_value = 0
 
         #year_spin_box = tkinter.Spinbox(date_frame, from_=2019, to=2030, width=10, textvariable=self.year )
@@ -128,7 +132,7 @@ class CreateApp:
 
 
         self.month = tkinter.StringVar() #Initialize the string variable
-        self.month.set(month_values[today_month-2]) #Set the default value to previous month -2 was used because 0 index
+        self.month.set(month_values[today_month-2]) #Set the default value to previous month -2 was used because of 0 index
         #month_spin_box = tkinter.Spinbox(date_frame, from_=1, to=12, width=10, textvariable=self.month )
         month_combo_box = ttk.Combobox(date_frame, textvariable=self.month, width=10,)
         month_combo_box['values'] = month_values
@@ -138,9 +142,9 @@ class CreateApp:
         self.day = tkinter.IntVar()
         if self.month.get() in [month_values[3], month_values[5], month_values[8], month_values[10]]:
             self.day.set(30)                  
-        elif self.month.get() == month_values[1] & self.year.get()%2==0:
+        elif self.month.get() == month_values[1] and self.year.get()%4==0:
              self.day.set(29)
-        elif self.month.get() == month_values[1] & self.year.get()%2!=0:
+        elif self.month.get() == month_values[1] and self.year.get()%4!=0:
              self.day.set(28)         
         else:
             self.day.set(31)
@@ -179,6 +183,12 @@ class CreateApp:
         self.display_canvas.grid(row=35, padx=5, pady=20, sticky=E)
         self.display_canvas_status_text=self.display_canvas.create_text(10, 10, text='Status:', anchor=W)
         self.display_status = self.display_canvas.create_text(50, 10, text='No file Choosen', anchor=W)
+
+    def create_display_copyright(self, parent_frame):
+        copyright_frame = Frame(parent_frame)
+        copyright_frame.grid(row=37, pady=0, padx=0, column=1, sticky=E)
+        copyright_label_name = tkinter.Label(copyright_frame, text='Copyright (C) Mikro @ 2021. All rights reserved.')
+        copyright_label_name.grid(row=37, column=1)
 
     def update_canvas(self):
         self.display_canvas.itemconfig(self.display_status, text=self.display.get())
@@ -232,7 +242,7 @@ class CreateApp:
         
     def validate(self)->bool:
         
-        if self.selected_filename == '':
+        if self.selected_filename == None or self.selected_filename=="" :
             print(self.selected_filename)
             print(self.subID_value.get())
             print("Validation Error", "No Excel File choosen yet. Please select a file")
@@ -300,18 +310,30 @@ class CreateApp:
                     except os.error as werr:
 
                         messagebox.showerror('Invalid', 'Error writing to text file \n' +str(werr))                   
-                    except:
+                    except Exception as e:
+                        print(e)
                         self.display.set('Error! An error occured. ')
                         messagebox.showerror('Error', 'An error occurred while writing to text file ')
                 except os.error as e:
                     messagebox.showerror('Invalid', 'Error reading excel file a '+ str(e))
                     print(os.error)
+                except:
+                        self.display.set('Error! An error occured. ')
+                        messagebox.showerror('Error', 'An error occurred while trying to read the Excel file. The file may be corrupted and passworded. Kindly check and try again ')
             else:
                 return
         
         return callback
 
 
+run_date_condition_Obj = DateFormated('2021-10-09')
+if run_date_condition_Obj.get_today_month() == 3 and run_date_condition_Obj.get_today_year() == 2022:   
+    create = CreateApp()
+    create.app()
+else:
+    root = tkinter.Tk()
+    root.title('Convert Excel To Pipe Delimited Text')
+    root.minsize(width=850, height=400)
+    messagebox.showinfo("Subscription Expired", "Your subscription has expired. Please contact the developer of this app.")  
     
-create = CreateApp()
-create.app()
+    

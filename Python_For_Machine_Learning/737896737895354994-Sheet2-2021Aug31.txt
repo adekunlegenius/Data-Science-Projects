@@ -1,0 +1,4 @@
+Name|Sex|Age|Fee|School|Code|Phone|Phone
+Ade|Male|12|20000|OAU|001|08031812695|+2348031812689
+Shola|Female|18|50000|Convenant|002|08069784914|
+Bimbo|Female|18||FCH|003||07029478943

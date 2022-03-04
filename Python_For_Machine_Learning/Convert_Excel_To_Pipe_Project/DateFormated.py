@@ -96,10 +96,10 @@ class DateFormated:
 
         return self.get_today_date().year
 
-    def get_today_month(self):
+    def get_today_month(self)->int:
         
         return self.get_today_date().month
 
-    def get_today_day(self):
+    def get_today_day(self)->int:
 
         return self.get_today_date().day

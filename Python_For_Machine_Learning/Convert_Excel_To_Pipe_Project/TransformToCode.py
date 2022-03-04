@@ -9,16 +9,17 @@ class TransformToCode:
         self.frameObj = frameObj
 
 
-    def acct_status_to_code(self, status:str)->str:
-        if (len(str(status)) ==3) and (str(status) in ['001', '002', '003']):
+    def acct_status_to_code(self, status_arg:str)->str:
+        status = str(status_arg).strip()
+        if (len(status) ==3) and (status in ['001', '002', '003']):
             return status
-        elif str(status) in ['1','2','3']:
-            return str(status).zfill(3)
-        elif str(status).lower() in ['open', 'opened', 'opn']:
+        elif status in ['1','2','3']:
+            return status.zfill(3)
+        elif status.lower() in ['open', 'opened', 'opn']:
             return '001'
-        elif str(status).lower() in ['close', 'closed', 'cls']:
+        elif status.lower() in ['close', 'closed', 'cls']:
             return '002'
-        elif str(status).lower() in ['written off', 'write off', 'writtenoff']:
+        elif status.lower() in ['written off', 'write off', 'writtenoff']:
             return '003'
         else:
             return '001'
@@ -40,9 +41,9 @@ class TransformToCode:
     def loan_classification_to_code(self, loan_classification)->str:
         """Takes in loan classification and returns the code corresponding to it. By default any loan classification not
         correctly specified is returned as watchlist-002"""
-        if (len(str(loan_classification)) == 3) & (loan_classification in ['001', '002', '003', '004', '005']):
+        if (len(str(loan_classification).strip()) == 3) & (loan_classification in ['001', '002', '003', '004', '005']):
             return loan_classification
-        elif str(loan_classification) in ['1', '2', '3', '4', '5']:
+        elif str(loan_classification).strip() in ['1', '2', '3', '4', '5']:
             return str(loan_classification).zfill(3)
         elif re.search('per', str(loan_classification).lower()) != None and str(loan_classification).lower() not in ['non performing', 'non-performing']:
             return '001'

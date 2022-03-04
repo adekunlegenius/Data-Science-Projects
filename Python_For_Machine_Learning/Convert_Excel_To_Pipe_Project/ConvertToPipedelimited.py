@@ -26,6 +26,9 @@ class ExcelFile:
         return extension.lower()
 
     def read_excel_file(self, app_Obj):
+        """Reads the Excel sheets into a dictionary with sheet name as the key and DataFrame as the value.
+        The function makes use of the read_excel() function found in openxl library to read the excel file. If openxl was unable to
+        read the file xldr library would be made use of. """
         print('Execution reach here.... 1')
         print(self.file_path)
         print(self.get_file_extension(self.file_path) )
@@ -51,22 +54,24 @@ class ExcelFile:
             
 
     def get_number_of_sheet(self)->int:
-
+        """Returns the number of sheets in the ExcelFile class dictionary property (dict_data)."""
         return len(self.dict_data)
 
 
     def get_dict_keys(self, dict_Obj):
+        """Returns lists of the sheet names in the excel file read (i.e the keys in the property (dict_data)"""
         keys = list(dict_Obj)
         return keys
 
     def get_column_heads(self, data_frame_Obj):
+        """"""
         heads = list(data_frame_Obj.columns.values) 
         return heads
 
     def get_num_of_rows(self, data_frame_Obj):
         return len(data_frame_Obj)
 
-    def write_to_text(self, path, frame_Obj):
+    def write_to_text(self, path, frame_Obj)->bool:
 
         if len(self.get_column_heads(frame_Obj)) == 29:
             transform_to_code_Obj = TransformToCode(frame_Obj)
@@ -84,7 +89,7 @@ class ExcelFile:
         else:
             pipe_sep_string = frame_Obj.to_csv(sep='|', index=False, header=False, line_terminator ='\n')
         #print(pipe_sep_string)
-        text_formated = open(path, 'w')
+        text_formated = open(path, 'w', encoding='utf-8')
         if text_formated.write(pipe_sep_string):
             text_formated.close()
             return TRUE
@@ -152,7 +157,7 @@ class ExcelFile:
                     #     message = 'An error was occurred while writing'+ text_file_name 
                     #     write_message.append(message)
                     #--------------------------------------------------------------------------
-                    message = sheet_name + " could be converted to text because it contains " + str(len(self.get_column_heads(self.dict_data[sheet_name]))) + ' no. of columns. Kindly confirm and try again'
+                    message = sheet_name + " could not be converted to text because it contains " + str(len(self.get_column_heads(self.dict_data[sheet_name]))) + ' no. of columns. Kindly confirm and try again'
                     print(message)
                     write_message.append({'red':message})
                 #print('Writing complete')
