@@ -49,7 +49,10 @@ class DateFormated:
         if month_number == 1:
             return 31
         elif month_number == 2:
-            return 29
+            if self.get_year_number()%4 == 0:
+                return 29
+            else:
+                return 28
         elif month_number == 3:
             return 31
         elif month_number == 4:

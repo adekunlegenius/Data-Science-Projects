@@ -15,3 +15,7 @@ class CleanExcelFile:
     def replace_headers(self):
         pass
 
+    def clean_of_leading_trailing_spaces(self, dataFrameObj):
+
+        pass
+

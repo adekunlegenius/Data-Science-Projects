@@ -1,19 +1,34 @@
+import collections
 from datetime import *
+import math
 from os import terminal_size
+#from typing import ChainMap
 import numpy
 import pandas as pd 
 import tkinter
 import re
-if None:
-    print('Helo world')
-else:
-    print('Helo world else')
-print('Helo world')
-print(None)
-print('          Park well'.strip())
+# if None:
+#     print('Helo world')
+# else:
+#     print('Helo world else')
+# print('Helo world')
+# print(None)
+print('          Park well'.lstrip())
 # data = {'name':'kunle'}
 
+# def test(x:str)->int:
+#     return int(x)
+# test_map = list(map(lambda y: test(y), ['1', '2', '3', '4']))
+# test_map2 = list(map(int, ['1', '2', '3', '4']))
+#print([i for i in test_map])
+#print(['1', '2', '3', '4'])
+# rev = list(reversed(test_map))
 
+# ziptest=zip([1,2,3], ["t", "v", "h"])
+# print(*ziptest)
+# print()
+#print(*rev)
+#print(*test_map)
 # text_formated = open('.\sheet1.txt', 'w')
 # pipe_sep_string = 'Writing test.............'
 # temp = text_formated.write(pipe_sep_string)
@@ -101,3 +116,89 @@ print('-------------------------------------------------')
 
 # trytest = Test()
 # trytest.run()
+
+# print(*[{"va":1}, {"ba":2}])
+
+# res = collections.ChainMap(*[{"va":1}, {"ba":2}])
+# print(list(res.keys()))
+# print(res['va'])
+#print("key" in {"key":1, "value":2})
+# testdic ={}
+# testdic.update({"key":3})
+# print(testdic)
+# print("--------------")
+# testdic.update({"key2":4})
+#print(testdic)
+def factorial(n):
+    # Write your code here
+    k= n
+    if n<=0:
+        return 1
+    else:
+        return n*factorial(n-1)
+#print(factorial(3))
+# if __name__ == "__main__":
+    
+#     n = int(input().strip())
+#     if n<=0 or n>100000:
+#         print("Invalid N input")
+#     else:
+#         phone_book = []
+#         for i in range(n):
+#             temp_input = input().rstrip().split()
+#             phone_book.append({temp_input[0]:temp_input[1]})
+#print(sum([1,2,3,4]))
+
+#Prime numbers
+def primeNumbers(n):
+    prime_numbers=[]
+    for k in range(1, n+1):
+        #print("k First for",k)
+        if k>1:
+            if k ==2:
+                prime_numbers.append(k)
+                #print("prime_numbers:",prime_numbers)
+            else:
+                i = 2
+                while i <k:
+                    #print("i: second for",i)
+                    if k%i ==0:
+                        break
+                    else:
+                        if i ==k-1:
+                            #print("k second for",k)
+                            prime_numbers.append(k)
+                            #print("prime_numbers second for:",prime_numbers)
+                    i = i+1
+    return prime_numbers
+def divisorSum( n):
+        
+        num_divisor =  primeNumbers(1000) #[2, 3, 5, 7, 11, 13, 17, 19, 23,29,31,37,41,47,53,59,61,67,71, 73,79,83,89,97,101,103,107,109,113] #prime numbers divisors
+        divisor_list = [1]
+        temp_quotient = n
+        i = 0
+        if temp_quotient in num_divisor:
+            divisor_list.append(temp_quotient)
+        else:
+            while(i<len(num_divisor) and temp_quotient!=1):
+                
+                # print("i:",i)
+                # print("temp_quo:",temp_quotient)
+                # print(num_divisor[i])
+                while(temp_quotient%num_divisor[i]==0):
+                    new_temp_fact = list(map(lambda x: x*num_divisor[i], divisor_list)) #[x*num_divisor[i] for x in divisor_list] --list comprehension
+                    #print(new_temp_fact)
+                    for j in new_temp_fact:
+                        if j in divisor_list:
+                            pass
+                        else:
+                            #print("j:",j)
+                            divisor_list.append(j)
+                    temp_quotient = temp_quotient//num_divisor[i]
+                i= i+1    
+        print(divisor_list)    
+        return sum(divisor_list)
+#print(divisorSum(6))
+# num = primeNumbers(1000000000)
+# print(num)
+print(int(math.sqrt(36)))

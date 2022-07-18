@@ -172,7 +172,7 @@ class CreateApp:
         checkbox_frame.grid(row=25, column=1, columnspan=1, sticky=E)
 
         self.acct_status_date_check = tkinter.BooleanVar()
-        label_checkboxname = tkinter.Checkbutton(checkbox_frame, text='Use Date In Acct Status Date', variable=self.acct_status_date_check)
+        label_checkboxname = tkinter.Checkbutton(checkbox_frame, text='Use Date as Acct Status Date', variable=self.acct_status_date_check)
         label_checkboxname.grid(row=25, column=0, pady=5, padx=15, sticky=E)
 
 
@@ -187,7 +187,7 @@ class CreateApp:
     def create_display_copyright(self, parent_frame):
         copyright_frame = Frame(parent_frame)
         copyright_frame.grid(row=37, pady=0, padx=0, column=1, sticky=E)
-        copyright_label_name = tkinter.Label(copyright_frame, text='Copyright (C) Mikro @ 2021. All rights reserved.')
+        copyright_label_name = tkinter.Label(copyright_frame, text='Copyright (C) CR Services Plc @ 2021. All rights reserved.')
         copyright_label_name.grid(row=37, column=1)
 
     def update_canvas(self):
@@ -319,7 +319,7 @@ class CreateApp:
                     print(os.error)
                 except:
                         self.display.set('Error! An error occured. ')
-                        messagebox.showerror('Error', 'An error occurred while trying to read the Excel file. The file may be corrupted and passworded. Kindly check and try again ')
+                        messagebox.showerror('Error', 'An error occurred while trying to read the Excel file. The file may be corrupted or passworded. Kindly check and try again ')
             else:
                 return
         
@@ -327,7 +327,7 @@ class CreateApp:
 
 
 run_date_condition_Obj = DateFormated('2021-10-09')
-if run_date_condition_Obj.get_today_month() == 3 and run_date_condition_Obj.get_today_year() == 2022:   
+if (run_date_condition_Obj.get_today_month() == 7)and run_date_condition_Obj.get_today_year() == 2022:   
     create = CreateApp()
     create.app()
 else:
